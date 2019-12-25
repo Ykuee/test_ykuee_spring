@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.ykuee.test.event.TestEvent;
+import com.ykuee.test.event.TestPublisher;
 import com.ykuee.test.service.TestAOPAnnotationService;
 import com.ykuee.test.service.TestAOPMethodService;
 import com.ykuee.test.service.TestELService;
@@ -28,9 +30,12 @@ public class SpringStrap {
 		System.out.println(testService.system);
 		System.out.println(testService.testNumber);
 		System.out.println(testService.fromObject);
-		testService.readFile();
+		//testService.readFile();
 		System.out.println(testService.myName);
 		System.out.println(testService.environment.getProperty("myname"));
+		
+		TestPublisher publisher = context.getBean(TestPublisher.class);
+		publisher.publish("Event Ykuee");
 		context.close();
 	}
 	
